@@ -28,13 +28,13 @@ else:
     suggestion = "☀️ Pakai sunscreen"
 
 # 3. Susun pesan
-lines = [f"Cuaca {lokasi['desa']}, {lokasi['kotkab']}"]
+lines = [f"Cuaca {lokasi['desa']}, {lokasi['kotkab']}, {lokasi['provinsi']}"]
 for forecast in today:
     jam = forecast["local_datetime"][11:16]  # ambil "22:00" saja
     lines.append(f"{jam} - {forecast['weather_desc']}, {forecast['t']}°C")
 lines.append("")
 lines.append(f"Saran: {suggestion}")
-lines.append("Sumber: BMKG")
+lines.append("Sumber: BMKG (Badan Meteorologi, Klimatologi, dan Geofisika)")
 message = "\n".join(lines)
 print(message)
 
