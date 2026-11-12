@@ -1,5 +1,5 @@
 import os
-from datetime import datetime
+from datetime import datetime, timedelta
 from zoneinfo import ZoneInfo
 
 import pandas as pd
@@ -196,13 +196,19 @@ for name in results:
         lines.append("Data tidak tersedia")
         continue
 
+    stale = False  # True kalau data cadangan sudah terlalu lama
     if result["backup_from"] is not None:
         lines.append(f"⚠️ Situs offline, memakai data tersimpan {result['backup_from']}")
+        saved = datetime.strptime(str(result["backup_from"]), "%Y-%m-%d %H:%M")
+        now = datetime.strptime(run_time, "%Y-%m-%d %H:%M")
+        if now - saved > timedelta(hours=24):
+            stale = True
+            lines.append("⚠️ Data lebih dari 24 jam, tidak dipakai untuk saran")
 
     for forecast in result["data"]:
         lines.append(f"{forecast['jam']} - {forecast['desc']}")
 
-    if is_rain(result["data"]):
+    if is_rain(result["data"]) and not stale:
         rain_expected = True
 
 if rain_expected:
