@@ -184,8 +184,8 @@ weather-bot/
 ├── main.py                       # the bot
 ├── weather_log.xlsx              # daily record + backup
 ├── requirements.txt              # Python packages
-├── README.md / README.en.md      # user manual (Indonesian / English)
-├── TESTING.md / TESTING.en.md    # test checklist (Indonesian / English)
+├── README.md                     # user manual (Indonesian / English)
+├── TESTING.md                    # test checklist (Indonesian / English)
 ├── bmkg.py, dummy.py, demo.py    # early learning scripts (not used by the bot)
 └── .env                          # secrets (local only, not on GitHub)
 ```
